@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { Categorias } from '../model/Categorias';
 import { Produtos } from '../model/Produtos';
 import { ProdutoServiceService } from '../service/produto-service.service';
 
@@ -13,7 +14,7 @@ export class ListaProdutoComponent implements OnInit {
 
   produto: Produtos = new Produtos
   listaProdutos: Produtos[]
-
+  listaCategoria: Categorias[]
 
   constructor(
     private router: Router,
@@ -24,7 +25,7 @@ export class ListaProdutoComponent implements OnInit {
 
     if(environment.token != ''){
       this.findAllProduto() /* QUERO Q APAREÇA QUANDO A TELA INICIAR */
-     
+
     }
     this.findAllProduto()
   }
