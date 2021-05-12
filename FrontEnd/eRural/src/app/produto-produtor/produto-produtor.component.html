@@ -17,8 +17,8 @@
                 aria-controls="nav-todas-tab" aria-selected="true">Categorias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="produtos" data-toggle="tab" href="#Produtos" role="tab"
-                aria-controls="nav-categoriaProdutos-tab" aria-selected="false" (click)='findByIdUsuario()'>Seus Produtos</a>
+              <a (click)='findByIdUsuario()' class="nav-link" id="produtos" data-toggle="tab" href="#Produtos" role="tab"
+                aria-controls="nav-Produtos-tab" aria-selected="false" >Meus Produtos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="cadastro" data-toggle="tab" href="#Cadastrar" role="tab"
@@ -30,7 +30,7 @@
 
 
         <div class="tab-content texto" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="todosProdutos" role="tabpanel"
+          <div class="tab-pane fade " id="categoriaProdutos" role="tabpanel"
             aria-labelledby="nav-todasPostagens-tab">
           <!--LISTA CATEGORIAS-->
             <div class="card-columns">
@@ -39,24 +39,24 @@
                   <div><img src='{{item.imagem}}' width="70" height="100"></div>
                   <h5 class="card-title m-0">{{item.nome}}</h5>
                   <p class="card-text mt-3">{{item.descricao}}</p>
-
-
                 </div>
               </div>
             </div>
             <!--/LISTA CATEGORIAS-->
           </div>
-          <div class="tab-pane fade" id="Produtos" role="tabpanel">
+          <div class="tab-pane fade" id="Produtos" role="tabpanel" aria-labelledby="nav-Produtos-tab">
             <!--LISTA PRODUTO DO PRODUTOR-->
-            <div class="card-columns" *ngFor='let item of usuario.produto'>
-              <div class="card text-center m-2">
+            <div class="card-columns">
+              <div class="card text-center m-2" *ngFor='let item of usuario.produto'>
                 <div class="card-body">
                   <div><img src='{{item.imagem}}' width="70" height="100"></div>
                   <h5 class="card-title m-0">{{item.nome}}</h5>
-                  <p class="card-text mt-3">{{item.descricao}}</p>
+                  <p class="card-text mt-3">{{item.categorias.nome}}</p>
+                  <p class="card-text mt-3">{{item.nome}}</p>
 
                   <a class="text-info mr-3" [routerLink]="['/editar-produto', item.id]">Editar</a>
                   <a class="text-danger" [routerLink]="['/delete-produto', item.id]">Apagar</a>
+
                 </div>
               </div>
             </div>

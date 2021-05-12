@@ -17,6 +17,7 @@ export class ProdutoComponent implements OnInit {
   produto: Produtos = new Produtos()
   idProduto:Produtos
   listaProdutos: Produtos[]
+  idTema: number
 
   categorias:Categorias = new Categorias()
   listaCategorias: Categorias[]
@@ -35,6 +36,7 @@ export class ProdutoComponent implements OnInit {
     }
     let id = this.route.snapshot.params['id']
     this.findByIdProduto(id)
+    this.findAllCategorias()
   }
 
   findByIdProduto(id:number){
@@ -49,9 +51,16 @@ export class ProdutoComponent implements OnInit {
     });
   }
 
+  findAllCategorias(){
+    this.categoriaService.getAllCategoria().subscribe((resp: Categorias[])=>{
+      this.listaCategorias = resp
+    })
+  }
+
   atualiza(){
-    /*   this.categorias.id = this.idCategoria;
-      this.produto.categorias = this.categorias; */
+      this.categorias.id = this.idCategoria;
+      this.produto.categorias = this.categorias;
+      
       this.produtosService.putProduto(this.produto).subscribe((resp: Produtos)=>{
       this.produto = resp
       alert('Produto atualizado com sucesso!')

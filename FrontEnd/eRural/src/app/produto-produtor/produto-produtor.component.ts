@@ -82,12 +82,12 @@ export class ProdutoProdutorComponent implements OnInit {
     this.produto.categorias = this.categoria
     this.usuario.id = this.idUser
     this.produto.usuario = this.usuario
-    console.log(this.produto)
+
     this.prodService.postProduto(this.produto).subscribe((resp: Produtos) => {
       this.produto = resp
       alert('Cadastrou com sucesso!')
-      this.produto = new Produtos
-      this.router.navigate(['/inicio-produtor'])
+      this.produto = new Produtos()
+      this.findAllProdutos()
 
     })
 
